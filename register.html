@@ -23,7 +23,7 @@
         <div
             class="card bg-white sm:w-170 shadow-sm border border-2 border-slate-50 m-auto hover:border-accent rounded-xl">
             <div class="card-body">
-                <form onsubmit="formValidation(event)" method="get">
+                <form onsubmit="signUpFormValidation(event)" method="get">
                     <div class="flex flex-col gap-5 mx-20">
                         <div class="flex flex-col sm:flex-row justify-between">
                             <div class="flex flex-col">
@@ -40,7 +40,7 @@
                                 <label>
                                     <p class="pb-2 text-slate-600 text-base font-semibold">Last Name</p>
 
-                                    <input oninput="inputValidation()" name="lname" id="lname" type="text"
+                                    <input name="lname" id="lname" type="text"
                                         class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none rounded-xl w-full ">
                                 </label>
                                 <p id="lnameValidateMsg" class="text-red-500"></p>
@@ -53,14 +53,14 @@
                         <label>
                             <p class="pb-2 text-slate-600 text-base font-semibold">Email</p>
 
-                            <input oninput="inputValidation()" name="email" id="email" type="text"
+                            <input name="email" id="email" type="text"
                                 class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none rounded-xl w-full ">
                         </label>
                         <p id="emailValidateMsg" class="text-red-500"></p>
                         <label>
                             <p class="pb-2 text-slate-600 text-base font-semibold">Password</p>
 
-                            <input oninput="inputValidation()" name="pass" id="pass" type="password"
+                            <input name="pass" id="pass" type="password"
                                 class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none rounded-xl w-full ">
                         </label>
                         <p id="passValidateMsg" class="text-red-500"></p>
@@ -68,7 +68,7 @@
                         <label>
                             <p class="pb-2 text-slate-600 text-base font-semibold">Confirm Password</p>
 
-                            <input oninput="inputValidation()" name="repass" id="repass" type="password"
+                            <input name="repass" id="repass" type="password"
                                 class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400  outline-none rounded-xl w-full ">
                         </label>
                         <p id="confirmValidateMsg" class="text-red-500"></p>
