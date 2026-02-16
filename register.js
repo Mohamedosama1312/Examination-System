@@ -152,8 +152,15 @@ function inputValidation() {
 }
 
 
-
-
+function inputFnameValidation() {
+    if (inputFname.value === "") {
+        fnameError.textContent = "First name is required";
+    } else if (isFinite(inputFname.value)) {
+        fnameError.textContent = "First Name must be letters only";
+    } else {
+        fnameError.textContent = "";
+    }
+}
 
 // function addRow() {
 //     if (inputName.value != " " && inputAge.value != " " && inputEmail.value != " ") {
@@ -184,3 +191,7 @@ function inputValidation() {
 //     ageError.textContent = "";
 //     emailError.textContent = "";
 // }
+
+
+
+inputFname.addEventListener("input", inputFnameValidation);

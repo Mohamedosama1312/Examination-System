@@ -4,16 +4,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Examination System</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-primary">Examination System</h2>
+                <div class="flex items-center gap-4">
+                    <div class="text-sm text-gray-600">
+                        <span class="font-semibold">Time Remaining:</span>
+                        <span class="text-primary font-bold ml-2">45:00</span>
+                    </div>
+                    <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                        Submit Exam
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-6">
 
-    <script src="exam.js"></script>
+            <!-- Main Content Area -->
+            <main class="flex-1 order-2 lg:order-1">
+                <!--^ Question Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                    <!--^ Question Header -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="flex-1">
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-100 text-primary text-sm font-semibold rounded-full mb-4">
+                                Question 3 of 20
+                            </span>
+                            <h1 id="questionTitle" class="text-2xl font-bold text-gray-800 leading-relaxed">
+                                What is the correct syntax to output "Hello World" in JavaScript?
+                            </h1>
+                        </div>
+                        <button id="flagBtn" class="ml-4 p-3 rounded-lg hover:bg-gray-100 transition-colors"
+                            title="Flag Question">
+                            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="space-y-4">
+                        <label
+                            class="flex items-start p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary hover:bg-blue-50 transition-all group">
+                            <input type="radio" name="answer" value="A"
+                                class="mt-1 w-5 h-5 text-primary focus:ring-2 focus:ring-primary">
+                            <span class="ml-4 text-lg text-gray-700 group-hover:text-gray-900">
+                                <span id="answerA" class="font-semibold">A.</span>
+                            </span>
+                        </label>
+
+                        <label
+                            class="flex items-start p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary hover:bg-blue-50 transition-all group">
+                            <input type="radio" name="answer" value="B"
+                                class="mt-1 w-5 h-5 text-primary focus:ring-2 focus:ring-primary">
+                            <span class="ml-4 text-lg text-gray-700 group-hover:text-gray-900">
+                                <span id="answerB" class="font-semibold">B.</span>
+                            </span>
+                        </label>
+
+                        <label
+                            class="flex items-start p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary hover:bg-blue-50 transition-all group">
+                            <input type="radio" name="answer" value="C"
+                                class="mt-1 w-5 h-5 text-primary focus:ring-2 focus:ring-primary">
+                            <span class="ml-4 text-lg text-gray-700 group-hover:text-gray-900">
+                                <span id="answerC" class="font-semibold">C.</span>
+                            </span>
+                        </label>
+
+                        <label
+                            class="flex items-start p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary hover:bg-blue-50 transition-all group">
+                            <input type="radio" name="answer" value="D"
+                                class="mt-1 w-5 h-5 text-primary focus:ring-2 focus:ring-primary">
+                            <span class="ml-4 text-lg text-gray-700 group-hover:text-gray-900">
+                                <span id="answerD" class="font-semibold">D.</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center">
+                    <button
+                        class="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg hover:bg-gray-50 transition-all font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                        Previous
+                    </button>
+
+                    <div class="flex gap-2">
+                        <p
+                            class="px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold">
+                            4
+                        </p>
+                    </div>
+
+                    <button
+                        class="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg shadow-md hover:shadow-lg hover:bg-blue-600 transition-all font-semibold">
+                        Next
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="w-full lg:w-80 order-1 lg:order-2">
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                    <!-- Sidebar Header -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                            </path>
+                        </svg>
+                        <h3 class="text-xl font-bold text-gray-800">Flagged Questions</h3>
+                    </div>
+
+                    <!-- Flagged Questions List -->
+                    <div id="flaggedList" class="space-y-3">
+                        <!-- Flagged Question Item -->
+                        <div
+                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-gray-800">Question 3</span>
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+                                What is the correct syntax to output "Hello World" in JavaScript?
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-gray-800">Question 7</span>
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+                                Which HTML tag is used to define an internal style sheet?
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-gray-800">Question 12</span>
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+                                What does CSS stand for?
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Empty State (Hidden by default) -->
+                    <div id="emptyState" class="hidden text-center py-8">
+                        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                            </path>
+                        </svg>
+                        <p class="text-gray-500 font-medium">No flagged questions</p>
+                        <p class="text-sm text-gray-400 mt-2">Click the flag icon to mark questions for review</p>
+                    </div>
+
+                    <!-- Progress Stats -->
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-3">Progress</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Answered:</span>
+                                <span class="font-semibold text-green-600">8/20</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Flagged:</span>
+                                <span class="font-semibold text-primary">3</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Remaining:</span>
+                                <span class="font-semibold text-gray-700">12</span>
+                            </div>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 40%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2 text-center">40% Complete</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script src="./exam.js"></script>
 </body>
 
 </html>
