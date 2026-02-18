@@ -1,144 +1,85 @@
-user = true;
-// JSON.parse(localStorage.getItem("user"));
-if (user) {
+//^CurrentUser From Local Storage
+user = JSON.parse(localStorage.getItem("currentUser"));
+
+//^CurrentExam From Local Storage
+const examQuestions = JSON.parse(localStorage.getItem("currentExam"));
+
+if (user && examQuestions) {
+
+    const questionTitle = document.getElementById("questionTitle");
+    const answerA = document.getElementById("answerA");
+    const answerB = document.getElementById("answerB");
+    const answerC = document.getElementById("answerC");
+    const answerD = document.getElementById("answerD");
+    const qOf = document.getElementById("qOf");
+    const qNumber = document.getElementById("qNumber");
+    const preBtn = document.getElementById("preBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
 
+    //^ Save current question index to local storage for persistence across page reloads
+    let currentQuestionIndex = parseInt(localStorage.getItem("currentQuestionIndex")) || 0;
+    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
 
-    const examQuestions = [
-        {
-            id: 1,
-            question: 'What is the correct syntax to output "Hello World" in JavaScript?',
-            options: {
-                A: 'echo("Hello World");',
-                B: 'console.log("Hello World");',
-                C: 'print("Hello World");',
-                D: 'System.out.println("Hello World");'
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 2,
-            question: "What will console.log(0 || 10) print?",
-            options: {
-                A: "0",
-                B: "10",
-                C: "undefined",
-                D: "NaN"
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 3,
-            question: "Which method is used to convert JSON string to JavaScript object?",
-            options: {
-                A: "JSON.stringify()",
-                B: "JSON.parse()",
-                C: "JSON.convert()",
-                D: "JSON.toObject()"
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 4,
-            question: "Which of the following is NOT a JavaScript data type?",
-            options: {
-                A: "String",
-                B: "Boolean",
-                C: "Float",
-                D: "Undefined"
-            },
-            correctAnswer: "C",
-            flagged: false
-        },
-        {
-            id: 5,
-            question: "What does === operator do?",
-            options: {
-                A: "Compares values only",
-                B: "Compares values and types",
-                C: "Assigns value",
-                D: "Checks if variable exists"
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 6,
-            question: "Which array method adds an element to the end of an array?",
-            options: {
-                A: "push()",
-                B: "pop()",
-                C: "shift()",
-                D: "unshift()"
-            },
-            correctAnswer: "A",
-            flagged: false
-        },
-        {
-            id: 7,
-            question: "What will typeof null return?",
-            options: {
-                A: "null",
-                B: "object",
-                C: "undefined",
-                D: "number"
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 8,
-            question: "Which function is used to delay code execution?",
-            options: {
-                A: "setInterval()",
-                B: "setTimeout()",
-                C: "delay()",
-                D: "wait()"
-            },
-            correctAnswer: "B",
-            flagged: false
-        },
-        {
-            id: 9,
-            question: "Which keyword is used to create a class in JavaScript?",
-            options: {
-                A: "function",
-                B: "object",
-                C: "class",
-                D: "constructor"
-            },
-            correctAnswer: "C",
-            flagged: false
-        },
-        {
-            id: 10,
-            question: "Which method removes the last element from an array?",
-            options: {
-                A: "push()",
-                B: "shift()",
-                C: "splice()",
-                D: "pop()"
-            },
-            correctAnswer: "D",
-            flagged: false
+    function updateQuestion() {
+        questionTitle.innerHTML = examQuestions[currentQuestionIndex].question;
+        answerA.innerHTML = "A. " + examQuestions[currentQuestionIndex].options.A;
+        answerB.innerHTML = "B. " + examQuestions[currentQuestionIndex].options.B;
+        answerC.innerHTML = "C. " + examQuestions[currentQuestionIndex].options.C;
+        answerD.innerHTML = "D. " + examQuestions[currentQuestionIndex].options.D;
+        qOf.innerHTML = "Question " + (currentQuestionIndex + 1) + " of " + examQuestions.length;
+        qNumber.innerHTML = currentQuestionIndex + 1;
+    }
+
+    updateQuestion();
+
+    //^intially disable previous button
+    if (currentQuestionIndex === 0) {
+        preBtn.disabled = true;
+    }
+
+    //^intially disable Next button
+    if (currentQuestionIndex === examQuestions.length - 1) {
+        nextBtn.disabled = true;
+    }
+
+    //^ Event Listeners for Pre Button
+    preBtn.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+            updateQuestion();
+            preBtn.disabled = false;
+            nextBtn.disabled = false;
         }
-    ];
+        if (currentQuestionIndex === 0) {
+            preBtn.disabled = true;
+        }
+    });
+
+
+    //^ Event Listeners for Next Button
+
+    nextBtn.addEventListener("click", () => {
+        if (currentQuestionIndex < examQuestions.length - 1) {
+            currentQuestionIndex++;
+            localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+            updateQuestion();
+            preBtn.disabled = false;
+            nextBtn.disabled = false;
+        }
+        if (currentQuestionIndex === examQuestions.length - 1) {
+            nextBtn.disabled = true;
+        }
+    });
 
 
 
 
-    document.getElementById("questionTitle").innerHTML = examQuestions[4].question;
-    document.getElementById("answerA").innerHTML = "A. " + examQuestions[4].options.A;
-    document.getElementById("answerB").innerHTML = "B. " + examQuestions[4].options.B;
-    document.getElementById("answerC").innerHTML = "C. " + examQuestions[4].options.C;
-    document.getElementById("answerD").innerHTML = "D. " + examQuestions[4].options.D;
 
 
 
 
 } else {
-    location.replace("login.html");
+    location.replace("exams.html");
 }

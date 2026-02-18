@@ -51,7 +51,7 @@ function loginFormValidation(e) {
         localStorage.setItem("currentUser", JSON.stringify(foundUser))
 
 
-        location.replace("exam.html");
+        location.replace("exams.html");
 
     }
 
