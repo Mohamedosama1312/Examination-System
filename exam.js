@@ -6,6 +6,37 @@ const examQuestions = JSON.parse(localStorage.getItem("currentExam"));
 
 if (user && examQuestions) {
 
+    const totalTime = 30;
+    let timeLeft = totalTime;
+
+    const timeEl = document.getElementById("time");
+    const progressEl = document.getElementById("progress");
+
+
+
+    const interval = setInterval(() => {
+        timeLeft--;
+
+        timeEl.textContent = timeLeft;
+
+        const percentage = (timeLeft / totalTime) * 100;
+        progressEl.style.setProperty("--value", percentage);
+        progressEl.classList.remove("text-primary", "text-warning", "text-error");
+
+        if (percentage <= 25) {
+            progressEl.classList.add("text-error");
+        } else if (percentage <= 50) {
+            progressEl.classList.add("text-warning");
+        } else {
+            progressEl.classList.add("text-primary");
+        }
+
+        if (timeLeft <= 0) {
+            window.location.replace("timeout.html")
+            clearInterval(interval);
+        }
+    }, 1000);
+
     const questionTitle = document.getElementById("questionTitle");
     const answerA = document.getElementById("answerA");
     const answerB = document.getElementById("answerB");
