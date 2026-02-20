@@ -148,6 +148,7 @@ if (user) {
         e.preventDefault();
         let shuffledQuestions = shuffleArray(jsExamQuestions);
         localStorage.setItem("currentExam", JSON.stringify(shuffledQuestions));
+        localStorage.setItem("currentQuestionIndex", 0);
         location.replace("exam.html");
     });
 
