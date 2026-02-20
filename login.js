@@ -2,6 +2,7 @@ var inputEmail = document.getElementById("email");
 var inputPass = document.getElementById("pass");
 var emailError = document.getElementById("emailValidateMsg");
 var passError = document.getElementById("passValidateMsg");
+var myRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/;
 var isValid = true;
 function loginFormValidation(e) {
     e.preventDefault();
@@ -13,7 +14,12 @@ function loginFormValidation(e) {
         emailError.textContent = "Email is required";
         isValid = false;
 
-    } else {
+    } else if (myRegex.test(inputEmail.value) === false) {
+        emailError.textContent = "Please enter a valid email address";
+        isValid = false;
+
+    }
+    else {
         emailError.textContent = "";
     }
     if (inputPass.value === "") {
@@ -64,6 +70,10 @@ function inputEmailValidation() {
 
     if (inputEmail.value === "") {
         emailError.textContent = "Email is required";
+    } else if (myRegex.test(inputEmail.value) === false) {
+        emailError.textContent = "Please enter a valid email address";
+        isValid = false;
+
     } else {
         emailError.textContent = "";
     }
