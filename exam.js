@@ -49,7 +49,9 @@ if (user && examQuestions) {
     const nextBtn = document.getElementById("nextBtn");
     const flaggedList = document.getElementById("flaggedList");
     const flagBtn = document.getElementById("flagBtn");
+    const options = document.querySelectorAll('input[name="answer"]');
 
+    const submitBtn = document.getElementById("submitEx");
 
     //^ Save current question index to local storage for persistence across page reloads
     let currentQuestionIndex = parseInt(localStorage.getItem("currentQuestionIndex")) || 0;
@@ -66,6 +68,7 @@ if (user && examQuestions) {
     }
 
     updateQuestion();
+    flaggedQuestions();
 
     //^intially disable previous button
     if (currentQuestionIndex === 0) {
@@ -77,8 +80,15 @@ if (user && examQuestions) {
         nextBtn.disabled = true;
     }
 
+    //^ chick if the current question is flagged 
+    if (examQuestions[currentQuestionIndex].flagged === true) {
+        flagBtn.classList.remove("text-gray-400");
+        flagBtn.classList.add("text-yellow-300");
+        flagBtn.classList.add("bg-yellow-100");
+    }
     //^ Event Listeners for Pre Button
-    preBtn.addEventListener("click", () => {
+    preBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
             localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
@@ -91,7 +101,7 @@ if (user && examQuestions) {
         }
 
 
-
+        //^ chick if the current question is flagged
 
         if (examQuestions[currentQuestionIndex].flagged === true) {
             flagBtn.classList.remove("text-gray-400");
@@ -103,12 +113,25 @@ if (user && examQuestions) {
             flagBtn.classList.add("text-gray-400");
         }
 
+
+
+        //^ Update Answer Selection UI
+        options.forEach(option => option.checked = false);
+
+        if (examQuestions[currentQuestionIndex].userAnswer) {
+            options.forEach(option => {
+                if (option.value === examQuestions[currentQuestionIndex].userAnswer) {
+                    option.checked = true;
+                }
+            });
+        }
     });
 
 
     //^ Event Listeners for Next Button
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         if (currentQuestionIndex < examQuestions.length - 1) {
             currentQuestionIndex++;
             localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
@@ -120,7 +143,7 @@ if (user && examQuestions) {
             nextBtn.disabled = true;
         }
 
-
+        //^ chick if the current question is flagged
 
         if (examQuestions[currentQuestionIndex].flagged === true) {
             flagBtn.classList.remove("text-gray-400");
@@ -130,6 +153,17 @@ if (user && examQuestions) {
             flagBtn.classList.remove("text-yellow-300");
             flagBtn.classList.remove("bg-yellow-100");
             flagBtn.classList.add("text-gray-400");
+        }
+
+        //^ Update Answer Selection UI
+        options.forEach(option => option.checked = false);
+
+        if (examQuestions[currentQuestionIndex].userAnswer) {
+            options.forEach(option => {
+                if (option.value === examQuestions[currentQuestionIndex].userAnswer) {
+                    option.checked = true;
+                }
+            });
         }
 
     });
@@ -146,12 +180,15 @@ if (user && examQuestions) {
         updateQuestion();
         preBtn.disabled = false;
         nextBtn.disabled = false;
+
         if (currentQuestionIndex === 0) {
             preBtn.disabled = true;
         }
         if (currentQuestionIndex === examQuestions.length - 1) {
             nextBtn.disabled = true;
         }
+
+        //^ chick if the current question is flagged
 
         if (examQuestions[currentQuestionIndex].flagged === true) {
             flagBtn.classList.remove("text-gray-400");
@@ -163,6 +200,17 @@ if (user && examQuestions) {
             flagBtn.classList.add("text-gray-400");
         }
 
+
+        //^ Update Answer Selection UI
+        options.forEach(option => option.checked = false);
+
+        if (examQuestions[currentQuestionIndex].userAnswer) {
+            options.forEach(option => {
+                if (option.value === examQuestions[currentQuestionIndex].userAnswer) {
+                    option.checked = true;
+                }
+            });
+        }
 
     }
 
@@ -193,7 +241,8 @@ if (user && examQuestions) {
         }
     }
 
-    flagBtn.addEventListener("click", () => {
+    flagBtn.addEventListener("click", (e) => {
+        e.preventDefault();
 
         if (examQuestions[currentQuestionIndex].flagged === false) {
 
@@ -215,11 +264,53 @@ if (user && examQuestions) {
 
 
 
+    //^ ################## Answer & score  ###################    
+
+    //^ Update Answer Selection UI
+    options.forEach(option => option.checked = false);
+
+    if (examQuestions[currentQuestionIndex].userAnswer) {
+        options.forEach(option => {
+            if (option.value === examQuestions[currentQuestionIndex].userAnswer) {
+                option.checked = true;
+            }
+        });
+    }
+
+    //^ Answer selection changes
+    options.forEach(option => {
+        option.addEventListener("change", (e) => {
+            const selectedAnswer = e.target.value;
+            examQuestions[currentQuestionIndex].userAnswer = selectedAnswer;
+            localStorage.setItem("currentExam", JSON.stringify(examQuestions));
+        })
+
+
+    });
 
 
 
+    function calculateScore() {
+        let score = 0;
+        examQuestions.forEach(question => {
+            if (question.userAnswer === question.correctAnswer) {
+                score++;
+            }
+        });
+        localStorage.setItem("score", score);
 
 
+    };
+
+
+    //^ Submit Exam
+    submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        calculateScore();
+
+        location.replace("grades.html");
+
+    });
 
 } else {
     location.replace("exams.html");

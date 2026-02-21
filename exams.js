@@ -31,7 +31,8 @@ if (user) {
                 D: 'System.out.println("Hello World");'
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 2,
@@ -43,7 +44,8 @@ if (user) {
                 D: "NaN"
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 3,
@@ -55,7 +57,8 @@ if (user) {
                 D: "JSON.toObject()"
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 4,
@@ -67,7 +70,8 @@ if (user) {
                 D: "Undefined"
             },
             correctAnswer: "C",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 5,
@@ -79,7 +83,8 @@ if (user) {
                 D: "Checks if variable exists"
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 6,
@@ -91,7 +96,8 @@ if (user) {
                 D: "unshift()"
             },
             correctAnswer: "A",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 7,
@@ -103,7 +109,8 @@ if (user) {
                 D: "number"
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 8,
@@ -115,7 +122,8 @@ if (user) {
                 D: "wait()"
             },
             correctAnswer: "B",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 9,
@@ -127,7 +135,8 @@ if (user) {
                 D: "constructor"
             },
             correctAnswer: "C",
-            flagged: false
+            flagged: false,
+            userAnswer: null
         },
         {
             id: 10,
@@ -139,7 +148,9 @@ if (user) {
                 D: "pop()"
             },
             correctAnswer: "D",
-            flagged: false
+            flagged: false,
+            userAnswer: null
+
         }
     ];
 
