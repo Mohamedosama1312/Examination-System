@@ -95,9 +95,10 @@
                             <h1 id="questionTitle" class="text-2xl font-bold text-gray-800 leading-relaxed">
                             </h1>
                         </div>
-                        <button id="flagBtn" class="ml-4 p-3 rounded-lg hover:bg-gray-100 transition-colors"
+                        <button id="flagBtn"
+                            class="ml-4 p-3 rounded-lg hover:bg-gray-100 transition-colors btn-error text-gray-400"
                             title="Flag Question">
-                            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
                                 </path>
@@ -187,79 +188,9 @@
                     </div>
 
                     <!-- Flagged Questions List -->
-                    <div id="flaggedList" class="space-y-3 overflow-y-auto max-h-96">
-                        <!-- Flagged Question Item -->
-                        <div
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-semibold text-gray-800">Question 3</span>
-                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
-                                    </path>
-                                </svg>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
-                                What is the correct syntax to output "Hello World" in JavaScript?
-                            </p>
-                        </div>
-                        <div
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-semibold text-gray-800">Question 3</span>
-                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
-                                    </path>
-                                </svg>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
-                                What is the correct syntax to output "Hello World" in JavaScript?
-                            </p>
-                        </div>
-                        <div
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-semibold text-gray-800">Question 3</span>
-                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
-                                    </path>
-                                </svg>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
-                                What is the correct syntax to output "Hello World" in JavaScript?
-                            </p>
-                        </div>
-                        <div
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-semibold text-gray-800">Question 7</span>
-                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
-                                    </path>
-                                </svg>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
-                                Which HTML tag is used to define an internal style sheet?
-                            </p>
-                        </div>
+                    <div id="flaggedList" class="space-y-3 overflow-y-auto max-h-96 min-h-41">
 
-                        <div
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <span class="font-semibold text-gray-800">Question 12</span>
-                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
-                                    </path>
-                                </svg>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
-                                What does CSS stand for?
-                            </p>
-                        </div>
+
                     </div>
 
                     <!-- Empty State (Hidden by default) -->
