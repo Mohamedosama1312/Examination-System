@@ -6,13 +6,12 @@ const examQuestions = JSON.parse(localStorage.getItem("currentExam"));
 
 if (user && examQuestions) {
 
-    const totalTime = 30;
+    //^ Countdown Timer #############
+    const totalTime = 15 * 60; // 15 minutes in seconds
     let timeLeft = totalTime;
 
     const timeEl = document.getElementById("time");
     const progressEl = document.getElementById("progress");
-
-
 
     const interval = setInterval(() => {
         timeLeft--;
@@ -37,6 +36,8 @@ if (user && examQuestions) {
         }
     }, 1000);
 
+    //^#########################
+
     const questionTitle = document.getElementById("questionTitle");
     const answerA = document.getElementById("answerA");
     const answerB = document.getElementById("answerB");
@@ -46,6 +47,8 @@ if (user && examQuestions) {
     const qNumber = document.getElementById("qNumber");
     const preBtn = document.getElementById("preBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const flaggedList = document.getElementById("flaggedList");
+    const flagBtn = document.getElementById("flagBtn");
 
 
     //^ Save current question index to local storage for persistence across page reloads
@@ -86,6 +89,20 @@ if (user && examQuestions) {
         if (currentQuestionIndex === 0) {
             preBtn.disabled = true;
         }
+
+
+
+
+        if (examQuestions[currentQuestionIndex].flagged === true) {
+            flagBtn.classList.remove("text-gray-400");
+            flagBtn.classList.add("text-yellow-300");
+            flagBtn.classList.add("bg-yellow-100");
+        } else if (examQuestions[currentQuestionIndex].flagged === false) {
+            flagBtn.classList.remove("text-yellow-300");
+            flagBtn.classList.remove("bg-yellow-100");
+            flagBtn.classList.add("text-gray-400");
+        }
+
     });
 
 
@@ -102,7 +119,100 @@ if (user && examQuestions) {
         if (currentQuestionIndex === examQuestions.length - 1) {
             nextBtn.disabled = true;
         }
+
+
+
+        if (examQuestions[currentQuestionIndex].flagged === true) {
+            flagBtn.classList.remove("text-gray-400");
+            flagBtn.classList.add("text-yellow-300");
+            flagBtn.classList.add("bg-yellow-100");
+        } else if (examQuestions[currentQuestionIndex].flagged === false) {
+            flagBtn.classList.remove("text-yellow-300");
+            flagBtn.classList.remove("bg-yellow-100");
+            flagBtn.classList.add("text-gray-400");
+        }
+
     });
+
+
+
+
+
+    //^ ################## Flagged Questions Logic###################
+
+    function goToQuestion(index) {
+        currentQuestionIndex = index;
+        localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+        updateQuestion();
+        preBtn.disabled = false;
+        nextBtn.disabled = false;
+        if (currentQuestionIndex === 0) {
+            preBtn.disabled = true;
+        }
+        if (currentQuestionIndex === examQuestions.length - 1) {
+            nextBtn.disabled = true;
+        }
+
+        if (examQuestions[currentQuestionIndex].flagged === true) {
+            flagBtn.classList.remove("text-gray-400");
+            flagBtn.classList.add("text-yellow-300");
+            flagBtn.classList.add("bg-yellow-100");
+        } else if (examQuestions[currentQuestionIndex].flagged === false) {
+            flagBtn.classList.remove("text-yellow-300");
+            flagBtn.classList.remove("bg-yellow-100");
+            flagBtn.classList.add("text-gray-400");
+        }
+
+
+    }
+
+
+    function flaggedQuestions() {
+
+        for (let i = 0; i < examQuestions.length; i++) {
+
+            if (examQuestions[i].flagged === true) {
+                flaggedList.innerHTML += ` <div onclick="goToQuestion(${i})"
+                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-gray-800">Question ${i + 1}</span>
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+                                ${examQuestions[i].question}
+                            </p>
+                        </div>`
+
+
+            }
+
+        }
+    }
+
+    flagBtn.addEventListener("click", () => {
+
+        if (examQuestions[currentQuestionIndex].flagged === false) {
+
+            examQuestions[currentQuestionIndex].flagged = true;
+            flagBtn.classList.remove("text-gray-400");
+            flagBtn.classList.add("text-yellow-300");
+            flagBtn.classList.add("bg-yellow-100");
+        } else if (examQuestions[currentQuestionIndex].flagged === true) {
+            examQuestions[currentQuestionIndex].flagged = false;
+            flagBtn.classList.remove("text-yellow-300");
+            flagBtn.classList.remove("bg-yellow-100");
+            flagBtn.classList.add("text-gray-400");
+        }
+        localStorage.setItem("currentExam", JSON.stringify(examQuestions));
+        flaggedList.innerHTML = "";
+        flaggedQuestions();
+
+    });
+
 
 
 
