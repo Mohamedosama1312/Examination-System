@@ -259,5 +259,7 @@ if (user && examQuestions) {
 
 
 } else {
+    localStorage.removeItem("examTimeLeft");
+
     location.replace("exams.html");
 }
