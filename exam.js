@@ -6,21 +6,43 @@ const examQuestions = JSON.parse(localStorage.getItem("currentExam"));
 
 if (user && examQuestions) {
 
-    //^ Countdown Timer #############
-    const totalTime = 15 * 60; // 15 minutes in seconds
-    let timeLeft = totalTime;
+    const totalTime = 15 * 60;
+    let savedTime = localStorage.getItem("examTimeLeft");
+    let timeLeft;
+    if (savedTime !== null) {
+        timeLeft = Number(savedTime);
+    } else {
+        timeLeft = totalTime;
+    }
 
-    const timeEl = document.getElementById("time");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
     const progressEl = document.getElementById("progress");
 
-    const interval = setInterval(() => {
-        timeLeft--;
 
-        timeEl.textContent = timeLeft;
 
-        const percentage = (timeLeft / totalTime) * 100;
+    function updateTimerUI() {
+
+        var minutes = Math.floor(timeLeft / 60);
+        var seconds = timeLeft % 60;
+
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        minutesEl.textContent = minutes;
+        secondsEl.textContent = seconds;
+
+        var percentage = (timeLeft / totalTime) * 100;
         progressEl.style.setProperty("--value", percentage);
-        progressEl.classList.remove("text-primary", "text-warning", "text-error");
+
+
+        progressEl.classList.remove("text-primary");
+        progressEl.classList.remove("text-warning");
+        progressEl.classList.remove("text-error");
 
         if (percentage <= 25) {
             progressEl.classList.add("text-error");
@@ -29,11 +51,26 @@ if (user && examQuestions) {
         } else {
             progressEl.classList.add("text-primary");
         }
+    }
+
+    updateTimerUI();
+
+    var interval = setInterval(function () {
+
+        timeLeft--;
+
+        localStorage.setItem("examTimeLeft", timeLeft);
+
+        updateTimerUI();
 
         if (timeLeft <= 0) {
-            window.location.replace("timeout.html")
             clearInterval(interval);
+
+            localStorage.removeItem("examTimeLeft");
+
+            window.location.replace("timeout.html");
         }
+
     }, 1000);
 
     //^#########################
@@ -313,5 +350,7 @@ if (user && examQuestions) {
     });
 
 } else {
+    localStorage.removeItem("examTimeLeft");
+
     location.replace("exams.html");
 }
