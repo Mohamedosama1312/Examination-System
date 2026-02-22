@@ -24,7 +24,7 @@ if (user) {
     const jsBeginner = [
         { id: 1, question: "Which keyword declares a variable?", options: { A: "var", B: "int", C: "let", D: "Both A & C" }, correctAnswer: "D", flagged: false, userAnswer: null },
         { id: 2, question: "JavaScript runs in?", options: { A: "Browser", B: "Server", C: "Both", D: "None" }, correctAnswer: "C", flagged: false, userAnswer: null },
-        { id: 3, question: "Which symbol for comments?", options: { A: "//", B: "<!-- -->", C: "#", D: "**" }, correctAnswer: "A", flagged: false, userAnswer: null },
+        { id: 3, question: "Which symbol for comments?", options: { A: "//", B: "&lt;!-- --&gt;", C: "#", D: "**" }, correctAnswer: "A", flagged: false, userAnswer: null },
         { id: 4, question: "typeof 5 ?", options: { A: "string", B: "number", C: "object", D: "null" }, correctAnswer: "B", flagged: false, userAnswer: null },
         { id: 5, question: "Which outputs data?", options: { A: "alert()", B: "console.log()", C: "print()", D: "write()" }, correctAnswer: "B", flagged: false, userAnswer: null },
         { id: 6, question: "Array uses?", options: { A: "()", B: "{}", C: "[]", D: "<>" }, correctAnswer: "C", flagged: false, userAnswer: null },
@@ -66,13 +66,13 @@ if (user) {
     const htmlExam = [
         { id: 1, question: "HTML stands for?", options: { A: "HyperText Markup Language", B: "HighText", C: "Hyper Tool", D: "None" }, correctAnswer: "A", flagged: false, userAnswer: null },
         { id: 2, question: "Heading largest?", options: { A: "h6", B: "h4", C: "h1", D: "h2" }, correctAnswer: "C", flagged: false, userAnswer: null },
-        { id: 3, question: "Anchor tag?", options: { A: "<a>", B: "<p>", C: "<link>", D: "<href>" }, correctAnswer: "A", flagged: false, userAnswer: null },
-        { id: 4, question: "Image tag?", options: { A: "<img>", B: "<image>", C: "<src>", D: "<pic>" }, correctAnswer: "A", flagged: false, userAnswer: null },
-        { id: 5, question: "List tag?", options: { A: "<ul>", B: "<li>", C: "Both", D: "<list>" }, correctAnswer: "C", flagged: false, userAnswer: null },
-        { id: 6, question: "Form input?", options: { A: "<input>", B: "<form>", C: "<field>", D: "<text>" }, correctAnswer: "A", flagged: false, userAnswer: null },
-        { id: 7, question: "Table row?", options: { A: "<td>", B: "<th>", C: "<tr>", D: "<table>" }, correctAnswer: "C", flagged: false, userAnswer: null },
-        { id: 8, question: "Semantic tag?", options: { A: "<div>", B: "<section>", C: "<span>", D: "<b>" }, correctAnswer: "B", flagged: false, userAnswer: null },
-        { id: 9, question: "Line break?", options: { A: "<br>", B: "<hr>", C: "<lb>", D: "<p>" }, correctAnswer: "A", flagged: false, userAnswer: null },
+        { id: 3, question: "Anchor tag?", options: { A: "&lt;a&gt;", B: "&lt;p&gt;", C: "&lt;link&gt;", D: "&lt;href&gt;" }, correctAnswer: "A", flagged: false, userAnswer: null },
+        { id: 4, question: "Image tag?", options: { A: "&lt;img&gt;", B: "&lt;image&gt;", C: "&lt;src&gt;", D: "&lt;pic&gt;" }, correctAnswer: "A", flagged: false, userAnswer: null },
+        { id: 5, question: "List tag?", options: { A: "&lt;ul&gt;", B: "&lt;li&gt;", C: "Both", D: "&lt;list&gt;" }, correctAnswer: "C", flagged: false, userAnswer: null },
+        { id: 6, question: "Form input?", options: { A: "&lt;input&gt;", B: "&lt;form&gt;", C: "&lt;field&gt;", D: "&lt;text&gt;" }, correctAnswer: "A", flagged: false, userAnswer: null },
+        { id: 7, question: "Table row?", options: { A: "&lt;td&gt;", B: "&lt;th&gt;", C: "&lt;tr&gt;", D: "&lt;table&gt;" }, correctAnswer: "C", flagged: false, userAnswer: null },
+        { id: 8, question: "Semantic tag?", options: { A: "&lt;div&gt;", B: "&lt;section&gt;", C: "&lt;span&gt;", D: "&lt;b&gt;" }, correctAnswer: "B", flagged: false, userAnswer: null },
+        { id: 9, question: "Line break?", options: { A: "&lt;br&gt;", B: "&lt;hr&gt;", C: "&lt;lb&gt;", D: "&lt;p&gt;" }, correctAnswer: "A", flagged: false, userAnswer: null },
         { id: 10, question: "HTML file ext?", options: { A: ".css", B: ".js", C: ".html", D: ".json" }, correctAnswer: "C", flagged: false, userAnswer: null },
     ];
 
