@@ -112,7 +112,7 @@ function signUpFormValidation(e) {
         localStorage.setItem("users", JSON.stringify(users));
 
         // redirect to login
-        location.replace("login.html");
+        location.replace("../login/login.html");
 
     }
 

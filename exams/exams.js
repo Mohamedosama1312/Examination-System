@@ -17,8 +17,11 @@ if (user) {
         let shuffledQuestions = shuffleArray(questions);
         localStorage.setItem("currentExam", JSON.stringify(shuffledQuestions));
         localStorage.setItem("currentQuestionIndex", 0);
-        location.replace("exam.html");
+        localStorage.removeItem("examTimeLeft");
+
+        location.replace("../exam/exam.html");
     }
+
 
     // ================= JS BEGINNER =================
     const jsBeginner = [
@@ -127,8 +130,20 @@ if (user) {
     document.getElementById("bootstrap-exam").onclick = () => startExam(bootstrapExam);
     document.getElementById("tailwind-exam").onclick = () => startExam(tailwindExam);
 
+    //  document.getElementById("html-exam").addEventListener("click", function (e) {
+    //         e.preventDefault();
+    //         localStorage.removeItem("examTimeLeft");
+    //         let shuffledQuestions = shuffleArray(htmlExam);
+    //         localStorage.setItem("currentExam", JSON.stringify(shuffledQuestions));
+    //         localStorage.setItem("currentQuestionIndex", 0);
+    //         location.replace("exam.html");
+    //     });
+
+
+
+
 } else {
-    location.replace("login.html");
+    location.replace("../login/login.html");
 }
 
 

@@ -6,6 +6,8 @@ const examQuestions = JSON.parse(localStorage.getItem("currentExam"));
 
 if (user && examQuestions) {
 
+    //^ timer logic
+
     const totalTime = 15 * 60;
     let savedTime = localStorage.getItem("examTimeLeft");
     let timeLeft;
@@ -18,7 +20,6 @@ if (user && examQuestions) {
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
     const progressEl = document.getElementById("progress");
-
 
 
     function updateTimerUI() {
@@ -46,10 +47,19 @@ if (user && examQuestions) {
 
         if (percentage <= 25) {
             progressEl.classList.add("text-error");
+            minutesEl.classList.add("animate-pulse");
+            minutesEl.classList.add("text-red-500");
+            secondsEl.classList.add("animate-pulse");
+            secondsEl.classList.add("text-red-500");
         } else if (percentage <= 50) {
             progressEl.classList.add("text-warning");
+            minutesEl.classList.add("animate-pulse");
+            minutesEl.classList.add("text-yellow-500");
+            secondsEl.classList.add("animate-pulse");
+            secondsEl.classList.add("text-yellow-500");
         } else {
             progressEl.classList.add("text-primary");
+
         }
     }
 
@@ -68,7 +78,7 @@ if (user && examQuestions) {
 
             localStorage.removeItem("examTimeLeft");
 
-            window.location.replace("timeout.html");
+            window.location.replace("../timeout/timeout.html");
         }
 
     }, 1000);
@@ -87,7 +97,11 @@ if (user && examQuestions) {
     const flaggedList = document.getElementById("flaggedList");
     const flagBtn = document.getElementById("flagBtn");
     const options = document.querySelectorAll('input[name="answer"]');
-
+    const completeBar = document.getElementById("completeBar");
+    const progressPercentage = document.getElementById("progressPercentage");
+    const remainingCount = document.getElementById("remainingCount");
+    const flaggedCount = document.getElementById("flaggedCount");
+    const answeredCount = document.getElementById("answeredCount");
     const submitBtn = document.getElementById("submitEx");
 
     //^ Save current question index to local storage for persistence across page reloads
@@ -102,10 +116,26 @@ if (user && examQuestions) {
         answerD.innerHTML = "D. " + examQuestions[currentQuestionIndex].options.D;
         qOf.innerHTML = "Question " + (currentQuestionIndex + 1) + " of " + examQuestions.length;
         qNumber.innerHTML = currentQuestionIndex + 1;
+        //^ Update Progress part
+        updateProgress();
+
     }
 
+    function updateProgress() {
+        const answeredQuestions = examQuestions.filter(q => q.userAnswer).length;
+        const flaggedQuestions = examQuestions.filter(q => q.flagged).length;
+        const remainingQuestions = examQuestions.length - answeredQuestions;
+        const progressPercent = Math.round((answeredQuestions / examQuestions.length) * 100);
+
+        completeBar.style.width = progressPercent + "%";
+        progressPercentage.textContent = progressPercent + "% Completed";
+        remainingCount.textContent = remainingQuestions + " Remaining";
+        flaggedCount.textContent = flaggedQuestions + " Flagged";
+        answeredCount.textContent = answeredQuestions + " Answered";
+    }
     updateQuestion();
     flaggedQuestions();
+    updateProgress();
 
     //^intially disable previous button
     if (currentQuestionIndex === 0) {
@@ -296,6 +326,8 @@ if (user && examQuestions) {
         localStorage.setItem("currentExam", JSON.stringify(examQuestions));
         flaggedList.innerHTML = "";
         flaggedQuestions();
+        updateProgress();
+
 
     });
 
@@ -314,12 +346,13 @@ if (user && examQuestions) {
         });
     }
 
-    //^ Answer selection changes
+    //^ Selected Answer changes
     options.forEach(option => {
         option.addEventListener("change", (e) => {
             const selectedAnswer = e.target.value;
             examQuestions[currentQuestionIndex].userAnswer = selectedAnswer;
             localStorage.setItem("currentExam", JSON.stringify(examQuestions));
+            updateProgress();
         })
 
 
@@ -344,13 +377,11 @@ if (user && examQuestions) {
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
         calculateScore();
-
-        location.replace("grades.html");
+        localStorage.removeItem("examTimeLeft");
+        location.replace("../grades/grades.html");
 
     });
 
 } else {
-    localStorage.removeItem("examTimeLeft");
-
-    location.replace("exams.html");
+    location.replace("../exams/exams.html");
 }

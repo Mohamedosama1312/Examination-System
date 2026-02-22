@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ^ font for the timer -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <title>Examination System</title>
     <link rel="stylesheet" href="./main.css">
     <script>
@@ -35,39 +37,19 @@
                     <div class="text-sm text-gray-600">
                         <!-- <div class="flex items-center justify-center min-h-screen bg-base-200"> -->
 
-                        <div class="text-center">
+                        <div class="text-center ">
 
                             <div id="progress"
-                                class="radial-progress text-primary transition-all duration-500 ease-linear "
+                                class="radial-progress before:bg-gray-100 text-primary transition-all duration-500 ease-linear  "
                                 style="--value:100; --size:5rem; --thickness: 5px;" role="progressbar">
-                                <span class="font-mono text-lg">
-
+                                <span class="text-lg  tracking-widest " style="font-family: 'Orbitron', font-mono;">
 
                                     <span id="minutes"></span>:<span id="seconds"></span>
                                 </span>
                             </div>
                         </div>
 
-                        <!-- <div class="text-center">
-                            <div class="relative w-24 h-24 mx-auto">
 
-                                <div id="progress"
-                                    class="radial-progress text-primary  transition-all duration-500 ease-linear"
-                                    style="--value:100; --size:5rem; --thickness:5px;" role="progressbar">
-                                </div>
-
-                                <div
-                                    class="absolute inset-0 flex items-center justify-center font-mono text-lg font-bold">
-                                    <span id="minutes">15</span>:<span id="seconds">00</span>
-                                </div>
-
-                            </div>
-                        </div> -->
-
-
-                        <!-- </div> -->
-                        <!-- <span class="font-semibold">Time Remaining:</span>
-                        <span class="text-primary font-bold ml-2">45:00</span> -->
                     </div>
                     <button id="submitEx"
                         class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
@@ -212,23 +194,23 @@
                         <div class="space-y-2">
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Answered:</span>
-                                <span class="font-semibold text-green-600">8/20</span>
+                                <span id="answeredCount" class="font-semibold text-green-600">8/20</span>
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Flagged:</span>
-                                <span class="font-semibold text-primary">3</span>
+                                <span id="flaggedCount" class="font-semibold text-primary">3</span>
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Remaining:</span>
-                                <span class="font-semibold text-gray-700">12</span>
+                                <span id="remainingCount" class="font-semibold text-gray-700">12</span>
                             </div>
                         </div>
                         <!-- Progress Bar -->
                         <div class="mt-4">
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full" style="width: 40%"></div>
+                                <div id="completeBar" class="bg-primary h-2.5 rounded-full" style="width: 90%"></div>
                             </div>
-                            <p class="text-xs text-gray-500 mt-2 text-center">40% Complete</p>
+                            <p id="progressPercentage" class="text-xs text-gray-500 mt-2 text-center">40% Complete</p>
                         </div>
                     </div>
                 </div>
