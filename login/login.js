@@ -2,6 +2,7 @@ var inputEmail = document.getElementById("email");
 var inputPass = document.getElementById("pass");
 var emailError = document.getElementById("emailValidateMsg");
 var passError = document.getElementById("passValidateMsg");
+var loginBtn = document.getElementById("loginBtn");
 var myRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/;
 var isValid = true;
 function loginFormValidation(e) {
@@ -55,10 +56,52 @@ function loginFormValidation(e) {
             return;
         }
         localStorage.setItem("currentUser", JSON.stringify(foundUser))
+        loginBtn.disabled = true;
+        if (document.documentElement.getAttribute("data-theme") === "dark") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: false,
+                background: "#0f172a",
+                color: "#e2e8f0",
+                iconColor: "#10b981",
+                customClass: {
+                    popup: "rounded-2xl shadow-xl border border-slate-700",
+                    title: "text-sm font-semibold"
+                }
 
+            });
 
-        location.replace("../exams/exams.html");
+            Toast.fire({
+                icon: "success",
+                title: `Welcome back ${foundUser.fname}!`
+            });
 
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: false,
+                background: "linear-gradient(to right, #4f46e5, #06b6d4)",
+                color: "#fff",
+                customClass: {
+                    popup: "rounded-2xl shadow-lg"
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: `Welcome back ${foundUser.fname}!`
+            });
+
+        }
+        setTimeout(() => {
+            location.replace("../exams/exams.html");
+        }, 2000);
     }
 
 
@@ -87,5 +130,5 @@ function inputPasswordValidation() {
     }
 }
 
-inputEmail.addEventListener("input", inputEmailValidation);
-inputPass.addEventListener("input", inputPasswordValidation);
+inputEmail.addEventListener("change", inputEmailValidation);
+inputPass.addEventListener("change", inputPasswordValidation);  

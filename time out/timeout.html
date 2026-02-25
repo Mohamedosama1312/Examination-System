@@ -2,16 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Examination System</title>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Out</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex items-center justify-center p-6">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl p-10 grid md:grid-cols-2 gap-10 items-center">
+
+        <!-- LEFT -->
+        <div>
+            <h1 id="timeoutTitle" class="text-4xl font-bold text-gray-800 mb-3">
+                ⏰ Time’s Up!
+            </h1>
+
+            <h2
+                class="text-5xl font-extrabold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent mb-6">
+                Exam Time Expired
+            </h2>
+
+            <p class="text-gray-600 text-lg mb-8">
+                The exam session ended because the time limit was reached.
+                Here’s your current score:
+            </p>
+
+            <!-- Score Card -->
+            <div class="bg-orange-50 rounded-2xl p-6 mb-6 shadow-md">
+                <p class="text-orange-600 font-semibold mb-2">Your Score</p>
+
+                <div class="flex items-end gap-2">
+                    <span id="scoreValue" class="text-6xl font-bold text-gray-800">0</span>
+                    <span class="text-3xl text-gray-400">/10</span>
+                </div>
+
+                <div class="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progressBar"
+                        class="h-full bg-gradient-to-r from-red-600 to-orange-500 transition-all duration-500 rounded-full"
+                        style="width: 0%;">
+                    </div>
+                </div>
+
+                <p id="percentageText" class="mt-3 text-orange-600 font-medium">
+                    0% Accuracy
+                </p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-wrap gap-4">
+                <a id="backHomeBtn"
+                    class="px-6 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-indigo-600 to-blue-500 hover:scale-105 transition shadow-lg cursor-pointer">
+                    🏠 Back to Home
+                </a>
+
+                <a id="takeAnotherExamBtn"
+                    class="px-6 py-3 rounded-xl border-2 border-red-500 text-red-600 font-semibold hover:bg-red-50 transition cursor-pointer">
+                    🔄 Take Another Exam
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="flex justify-center">
+            <div
+                class="w-80 md:w-96 h-80 bg-gradient-to-br from-red-400 to-orange-500 rounded-3xl flex items-center justify-center text-white text-7xl shadow-xl animate-pulse">
+                ⏳
+            </div>
+        </div>
+
+    </div>
 
 
     <script src="./timeout.js"></script>

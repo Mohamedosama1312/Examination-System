@@ -376,6 +376,8 @@ if (user && examQuestions) {
     //^ Submit Exam
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+        updateQuestion();
         calculateScore();
         localStorage.removeItem("examTimeLeft");
         location.replace("../grades/grades.html");

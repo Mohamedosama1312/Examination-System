@@ -1,0 +1,204 @@
+/* ====================================================
+   styles.css  —  Custom keyframe animations for Home
+   ==================================================== */
+
+/* ---------- Decorative floating blobs ---------- */
+.anim-blob {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.15;
+    pointer-events: none;
+    animation: blobDrift 16s ease-in-out infinite;
+}
+
+.anim-blob-one {
+    background: var(--color-primary);
+    top: -10rem;
+    right: -8rem;
+}
+
+.anim-blob-two {
+    background: var(--color-secondary);
+    bottom: -12rem;
+    left: -10rem;
+    animation-delay: 3s;
+}
+
+.anim-blob-cta {
+    background: var(--color-primary);
+    width: 30rem;
+    height: 30rem;
+    top: -14rem;
+    right: -14rem;
+    animation-delay: 1s;
+    opacity: 0.12;
+}
+
+/* ---------- Fade-up entrance ---------- */
+.anim-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.75s ease-out forwards;
+}
+
+/* ---------- Fade-down entrance (navbar) ---------- */
+.anim-fade-down {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeDown 0.65s ease-out forwards;
+}
+
+/* ---------- Slide from sides ---------- */
+.anim-slide-right {
+    opacity: 0;
+    transform: translateX(-32px);
+    animation: slideRight 0.8s ease-out forwards;
+}
+
+.anim-slide-left {
+    opacity: 0;
+    transform: translateX(32px);
+    animation: slideLeft 0.8s ease-out forwards;
+}
+
+/* ---------- Gentle float ---------- */
+.anim-float {
+    animation: floatY 5s ease-in-out infinite;
+}
+
+/* ---------- Slow pulsing glow ---------- */
+.anim-pulse-slow {
+    animation: pulseSlow 4s ease-in-out infinite;
+}
+
+/* ---------- Hover lift utility ---------- */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px -10px var(--home-shadow);
+}
+
+/* ---------- Navbar active link (set by JS) ---------- */
+.nav-link.is-active {
+    color: var(--color-primary);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    .anim-blob,
+    .anim-fade-up,
+    .anim-fade-down,
+    .anim-slide-right,
+    .anim-slide-left,
+    .anim-float,
+    .anim-pulse-slow {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    .hover-lift,
+    .hover-lift:hover {
+        transition: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* ============================
+        KEYFRAMES
+   ============================ */
+
+@keyframes blobDrift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(28px, -22px) scale(1.07);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-32px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(32px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes floatY {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pulseSlow {
+
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.25;
+        transform: scale(1.04);
+    }
+}

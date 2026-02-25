@@ -1,5 +1,5 @@
 //^ Current User
-user = JSON.parse(localStorage.getItem("currentUser"));
+const user = JSON.parse(localStorage.getItem("currentUser"));
 
 if (user) {
 
@@ -130,16 +130,6 @@ if (user) {
     document.getElementById("bootstrap-exam").onclick = () => startExam(bootstrapExam);
     document.getElementById("tailwind-exam").onclick = () => startExam(tailwindExam);
 
-    //  document.getElementById("html-exam").addEventListener("click", function (e) {
-    //         e.preventDefault();
-    //         localStorage.removeItem("examTimeLeft");
-    //         let shuffledQuestions = shuffleArray(htmlExam);
-    //         localStorage.setItem("currentExam", JSON.stringify(shuffledQuestions));
-    //         localStorage.setItem("currentQuestionIndex", 0);
-    //         location.replace("exam.html");
-    //     });
-
-
 
 
 } else {
@@ -147,181 +137,65 @@ if (user) {
 }
 
 
-// //^CurrentUser From Local Storage
-// user = JSON.parse(localStorage.getItem("currentUser"));
-
-// if (user) {
-//     //^Fisher–Yates Shuffle for Randomizing Exam Questions
-//     function shuffleArray(array) {
-//         let newArray = [...array];
-
-//         for (let i = newArray.length - 1; i > 0; i--) {
-//             let j = Math.floor(Math.random() * (i + 1));
-//             [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-//         }
-
-//         return newArray;
-//     }
 
 
 
 
-//     //^ JS Exam Questions
-//     let jsExamElement = document.getElementById("js-exam");
-
-//     const jsExamQuestions = [
-//         {
-//             id: 1,
-//             question: 'What is the correct syntax to output "Hello World" in JavaScript?',
-//             options: {
-//                 A: 'echo("Hello World");',
-//                 B: 'console.log("Hello World");',
-//                 C: 'print("Hello World");',
-//                 D: 'System.out.println("Hello World");'
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 2,
-//             question: "What will console.log(0 || 10) print?",
-//             options: {
-//                 A: "0",
-//                 B: "10",
-//                 C: "undefined",
-//                 D: "NaN"
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 3,
-//             question: "Which method is used to convert JSON string to JavaScript object?",
-//             options: {
-//                 A: "JSON.stringify()",
-//                 B: "JSON.parse()",
-//                 C: "JSON.convert()",
-//                 D: "JSON.toObject()"
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 4,
-//             question: "Which of the following is NOT a JavaScript data type?",
-//             options: {
-//                 A: "String",
-//                 B: "Boolean",
-//                 C: "Float",
-//                 D: "Undefined"
-//             },
-//             correctAnswer: "C",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 5,
-//             question: "What does === operator do?",
-//             options: {
-//                 A: "Compares values only",
-//                 B: "Compares values and types",
-//                 C: "Assigns value",
-//                 D: "Checks if variable exists"
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 6,
-//             question: "Which array method adds an element to the end of an array?",
-//             options: {
-//                 A: "push()",
-//                 B: "pop()",
-//                 C: "shift()",
-//                 D: "unshift()"
-//             },
-//             correctAnswer: "A",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 7,
-//             question: "What will typeof null return?",
-//             options: {
-//                 A: "null",
-//                 B: "object",
-//                 C: "undefined",
-//                 D: "number"
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 8,
-//             question: "Which function is used to delay code execution?",
-//             options: {
-//                 A: "setInterval()",
-//                 B: "setTimeout()",
-//                 C: "delay()",
-//                 D: "wait()"
-//             },
-//             correctAnswer: "B",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 9,
-//             question: "Which keyword is used to create a class in JavaScript?",
-//             options: {
-//                 A: "function",
-//                 B: "object",
-//                 C: "class",
-//                 D: "constructor"
-//             },
-//             correctAnswer: "C",
-//             flagged: false,
-//             userAnswer: null
-//         },
-//         {
-//             id: 10,
-//             question: "Which method removes the last element from an array?",
-//             options: {
-//                 A: "push()",
-//                 B: "shift()",
-//                 C: "splice()",
-//                 D: "pop()"
-//             },
-//             correctAnswer: "D",
-//             flagged: false,
-//             userAnswer: null
-
-//         }
-//     ];
+//^ log out btn logic
+const logOutBtn2 = document.getElementById("logOutBtn2");
 
 
-//     jsExamElement.addEventListener("click", function (e) {
-//         e.preventDefault();
-//         localStorage.removeItem("examTimeLeft");
-//         let shuffledQuestions = shuffleArray(jsExamQuestions);
-//         localStorage.setItem("currentExam", JSON.stringify(shuffledQuestions));
-//         localStorage.setItem("currentQuestionIndex", 0);
-//         location.replace("exam.html");
-//     });
+logOutBtn2.addEventListener("click", () => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Are you sure you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log out!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("currentExam");
+            location.replace("../home/index.html");
+        }
+    });
+})
 
+//^ DARK / LIGHT MODE TOGGLE 
 
+const html = document.documentElement;
+const toggleBtn = document.getElementById("themeToggle");
+const moonIcon = document.getElementById("moonIcon");
+const sunIcon = document.getElementById("sunIcon");
 
-//     //^ Css Exam Questions
+//^Apply theme to <html> and update toggle icons.
 
+function applyTheme(theme) {
+    html.setAttribute("data-theme", theme);
+    if (theme === "dark") {
+        moonIcon.classList.add("hidden");
+        sunIcon.classList.remove("hidden");
+        sunIcon.classList.add("rotate-180");
+        setTimeout(() => sunIcon.classList.remove("rotate-180"), 350);
+    } else {
+        sunIcon.classList.add("hidden");
+        moonIcon.classList.remove("hidden");
+        moonIcon.classList.add("-rotate-90");
+        setTimeout(() => moonIcon.classList.remove("-rotate-90"), 350);
+    }
+}
 
+// Restore saved preference or default to light
+const saved = localStorage.getItem("theme");
+applyTheme(saved === "dark" ? "dark" : "light");
 
-
-// } else {
-//     location.replace("login.html");
-// }
-
-
+// Toggle on click
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+    });
+}

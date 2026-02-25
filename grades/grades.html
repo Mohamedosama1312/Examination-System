@@ -2,16 +2,43 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Result</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Examination System</title>
-
+    <!-- < src="https://cdn.tailwindcss.com"></script> -->
 </head>
 
-<body>
+<body
+    class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 flex items-center justify-center p-6 relative ">
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+
+
+
+    <div id="result-card"
+        class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl p-10 mb-10 flex flex-col-reverse  pt-18 md:pt-10 md:mb-15  md:grid md:grid-cols-2 gap-10 items-center relative z-10">
+
+
+
+    </div>
+
+
+
+
+
+    <!-- FOOTER BAR -->
+    <div
+        class="absolute bottom-0 w-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-center py-3 text-sm">
+        🎉 Exam Completed Successfully — Keep Going!
+    </div>
+
 
     <script src="./grades.js"></script>
 </body>

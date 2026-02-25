@@ -1,63 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        // Keep the same theme as Home (localStorage: "theme")
+        (function () {
+            const saved = localStorage.getItem("theme");
+            document.documentElement.setAttribute("data-theme", saved === "dark" ? "dark" : "light");
+        })();
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Examination System</title>
+
+    <link rel="stylesheet" href="../theme.css">
+
+    <title>Front-End Fight | Login</title>
+
+    <style>
+        @keyframes popup {
+
+            0% {
+                transform: translateY(-10%);
+                opacity: 0.18;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
 
 </head>
 
-<body class="font-sans m-0 p-5">
-    <div class="navbar bg-white">
-        <p class="text-2xl font-semibold text-slate-800 hover:text-accent cursor-pointer">Online Examination System</p>
-    </div>
-    <div>
-        <div class="text-center">
-            <p class="pb-3 text-2xl font-bold text-slate-800">Login</p>
+<body class="min-h-screen bg-base-200 text-base-content transition-colors duration-500 ease-in-out">
+    <main class="relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden">
+        <!-- Soft decorative blobs (theme-aware) -->
+        <div class="absolute -top-28 -right-28 w-96 h-96 rounded-full blur-3xl bg-primary opacity-15"></div>
+        <div class="absolute -bottom-32 -left-32 w-[28rem] h-[28rem] rounded-full blur-3xl bg-secondary opacity-15">
         </div>
 
-        <div
-            class="card bg-white sm:w-130 shadow-sm border border-2 border-slate-50 m-auto hover:border-accent rounded-xl">
-            <div class="card-body">
-                <form onsubmit="loginFormValidation(event)" method="get">
-                    <div class="flex flex-col gap-5 mx-20">
-
-                        <label>
-                            <p class="pb-2 text-slate-600 text-base font-semibold">Email</p>
-
-                            <input name="email" id="email" type="text"
-                                class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none rounded-xl w-full ">
-                        </label>
-                        <p id="emailValidateMsg" class="text-red-500"></p>
-                        <label>
-                            <p class="pb-2 text-slate-600 text-base font-semibold">Password</p>
-
-                            <input name="pass" id="pass" type="password"
-                                class="input text-slate-800   border border-slate-200 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none rounded-xl w-full ">
-                        </label>
-                        <p id="passValidateMsg" class="text-red-500"></p>
-
-
+        <div class="w-full max-w-xl relative animate-[popup_0.5s]">
+            <div class="card bg-base-100/70 backdrop-blur-xl border border-base-300/60 shadow-xl rounded-3xl">
+                <div class="card-body">
+                    <div class="text-center mb-6">
+                        <p class="text-sm opacity-70">Front-End Fight</p>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold mt-1">Welcome back</h1>
+                        <p class="text-sm opacity-70 mt-2">Login to continue your exams.</p>
                     </div>
 
+                    <form onsubmit="loginFormValidation(event)" method="get" class="space-y-5 px-10">
+                        <div>
+                            <label class="form-control w-full">
+                                <div class="label"><span class="label-text font-semibold">Email</span></div>
+                                <input name="email" id="email" type="text"
+                                    class="input input-bordered w-full rounded-xl bg-base-100 text-base-content focus:input-primary" />
+                            </label>
+                            <p id="emailValidateMsg" class="text-error text-sm mt-1"></p>
+                        </div>
 
-                    <div class="card-actions justify-center mt-4">
-                        <button type="submit" class="btn bg-accent text-white text-base rounded-xl">Login</button>
-                    </div>
+                        <div>
+                            <label class="form-control w-full">
+                                <div class="label"><span class="label-text font-semibold">Password</span></div>
+                                <input name="pass" id="pass" type="password"
+                                    class="input input-bordered w-full rounded-xl bg-base-100 text-base-content focus:input-primary" />
+                            </label>
+                            <p id="passValidateMsg" class="text-error text-sm mt-1"></p>
+                        </div>
 
+                        <div class="pt-2">
+                            <button id="loginBtn" type="submit"
+                                class="btn btn-primary btn-lg w-full rounded-xl disabled:bg-primary/50 disabled:text-primary-content/70 disabled:border-primary/50 disabled:cursor-not-allowed">
+                                Login
+                            </button>
+                        </div>
 
-                </form>
-
+                        <div class="text-center text-sm opacity-75">
+                            Don’t have an account?
+                            <a href="../register/register.html" class="link link-hover text-primary">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </main>
 
-    </div>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./login.js"></script>
 </body>
 

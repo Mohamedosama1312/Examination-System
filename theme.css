@@ -1,0 +1,61 @@
+  /* ========== Custom DaisyUI Theme Colors ========== */
+  /* ================= LIGHT MODE (Clean Tech SaaS) ================= */
+  [data-theme="light"] {
+
+      /* Brand Colors */
+      --color-primary: #2563EB;
+      /* Modern Blue */
+      --color-primary-content: #FFFFFF;
+
+      --color-secondary: #0EA5E9;
+      /* Sky Blue */
+      --color-secondary-content: #FFFFFF;
+
+      --color-accent: #22D3EE;
+      /* Soft Cyan */
+      --color-accent-content: #0F172A;
+
+      /* Background System */
+      --color-base-100: #F8FAFC;
+      /* Very Soft Background */
+      --color-base-200: #F1F5F9;
+      --color-base-300: #E2E8F0;
+
+      /* Text (أوضح جدًا) */
+      --color-base-content: #0F172A;
+      /* Deep Slate */
+
+      /* Shadows */
+      --home-shadow: rgba(37, 99, 235, 0.25);
+  }
+
+
+
+  /* ================= DARK MODE (Deep Modern Tech) ================= */
+  [data-theme="dark"] {
+
+      /* Brand Colors */
+      --color-primary: #38BDF8;
+      /* Bright Cyan */
+      --color-primary-content: #0B1120;
+
+      --color-secondary: #60A5FA;
+      /* Soft Electric Blue */
+      --color-secondary-content: #0B1120;
+
+      --color-accent: #a283fe;
+      /* Subtle Violet Accent */
+      --color-accent-content: #0B1120;
+
+      /* Background System */
+      --color-base-100: #0B1120;
+      /* Deep Navy */
+      --color-base-200: #0F172A;
+      --color-base-300: #1E293B;
+
+      /* Text (واضح ومريح) */
+      --color-base-content: #E2E8F0;
+
+      /* Shadow */
+      --home-shadow: rgba(37, 99, 235, 0.25);
+  }
