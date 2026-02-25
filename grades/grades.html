@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="../theme.css">
 </head>
 
-<body class="min-h-screen bg-base-200 text-base-content transition-colors duration-500 ease-in-out">
+<body class="min-h-screen bg-base-200 text-base-content transition-colors duration-500 ease-in-out overflow-x-hidden">
 
     <!-- ======================== NAVBAR ======================== -->
     <header class="navbar bg-base-100/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 px-4 md:px-8">
         <div class="navbar-start">
-            <a href="../home/index.html" class="text-xl md:text-2xl font-extrabold tracking-tight select-none">
+            <a class="text-xl md:text-2xl font-extrabold tracking-tight select-none">
                 <span class="text-primary">Front-End</span> Fight
             </a>
         </div>
@@ -45,7 +45,7 @@
         </div>
     </header>
 
-    <main class="relative flex items-center justify-center p-6">
+    <main class="relative flex flex-col items-center justify-center p-6">
 
         <!-- Confetti Canvas -->
         <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
@@ -53,10 +53,22 @@
         <div id="result-card"
             class="max-w-5xl w-full bg-base-100 border border-base-300 rounded-3xl shadow-2xl p-10 mb-10 flex flex-col-reverse pt-18 md:pt-10 md:mb-15 md:grid md:grid-cols-2 gap-10 items-center relative z-10">
 
+            <div class="flex flex-wrap gap-4 mt-6">
+                <a id="home-button" onclick="homeButtonHandler(event)" class="btn btn-primary rounded-xl">
+                    🏠 Back to Home
+                </a>
+
+                <a id="exams-button" onclick="examsButtonHandler(event)" class="btn btn-outline rounded-xl">
+                    🔄 Take Another Exam
+                </a>
+            </div>
+
+        </div>
+        <div id="aswers-section"
+            class="max-w-5xl w-full bg-base-100 border border-base-300 rounded-3xl shadow-2xl p-10 mb-10  pt-18 md:pt-10 md:mb-15 md:grid md:grid-cols-2 gap-5 items-center relative z-10 ">
 
 
         </div>
-
 
     </main>
 

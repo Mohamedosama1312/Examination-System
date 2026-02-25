@@ -3,7 +3,7 @@
 
 /**
  * Mark the given hash (e.g. "#contact") as active on all navbar links.
- * @param {string} hash
+//  * @param {string} hash
  */
 function setActiveNav(hash) {
     const normalized = hash && hash.startsWith("#") ? hash : "#about";
@@ -51,5 +51,5 @@ if (sections.length) {
 
 // Keep active state in sync when hash changes (e.g. back/forward)
 window.addEventListener("hashchange", () => {
-    setActiveNav(window.location.hash || "#about");
+    setActiveNav(window.location.hash);
 });

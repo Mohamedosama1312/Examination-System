@@ -3,7 +3,7 @@ const examsButton = document.getElementById("exams-button");
 const resultCard = document.getElementById("result-card");
 const user = JSON.parse(localStorage.getItem("currentUser"));
 const score = JSON.parse(localStorage.getItem("score"));
-
+const answersSection = document.getElementById("aswers-section");
 const currentExam = JSON.parse(localStorage.getItem("currentExam"));
 const pres = currentExam && score !== null ? Math.round((score / currentExam.length) * 100) : null;
 
@@ -44,7 +44,12 @@ if (user && currentExam && score !== null) {
                     <div class="h-full w-full bg-primary"></div>
                 </div>
 
+                <div class="flex items-center justify-between gap-4 mt-5">
                 <p class="mt-3 text-success font-medium">✔ Perfect Score</p>
+                    <a id="show-answers-button" onclick="showAnswersHandler(event)" class="btn btn-success rounded-xl">
+                   Show Answers
+                </a>
+                </div>                
             </div>
 
             <!-- BUTTONS -->
@@ -134,8 +139,12 @@ if (user && currentExam && score !== null) {
                     <div class="h-full rounded-full bg-primary" style="width: ${score / currentExam.length * 100}%"></div>
                 </div>
 
-                <p class="mt-3 text-success font-medium">✔ Good Score</p>
-            </div>
+                <div class="flex items-center justify-between gap-4 mt-5">
+                          <p class="mt-3 text-success font-medium">✔ Good Score</p>
+                    <a id="show-answers-button" onclick="showAnswersHandler(event)" class="btn btn-success rounded-xl">
+                   Show Answers
+                </a>
+                </div>            </div>
 
             <!-- BUTTONS -->
             <div class="flex flex-wrap gap-4 mt-6" >
@@ -223,8 +232,12 @@ if (user && currentExam && score !== null) {
                 <div class="mt-4 h-3 bg-base-300 rounded-full overflow-hidden">
                     <div class="h-full rounded-full bg-primary" style="width: ${score / currentExam.length * 100}%"></div>
                 </div>
-
-                <p class="mt-3 text-error font-medium">❌ Failed Score</p>
+                <div class="flex items-center justify-between gap-4 mt-5">
+                    <p class=" text-error font-medium">❌ Failed Score</p>
+                    <a id="show-answers-button" onclick="showAnswersHandler(event)" class="btn btn-success rounded-xl">
+                   Show Answers
+                </a>
+                </div>
             </div>
 
             <!-- BUTTONS -->
@@ -249,6 +262,74 @@ if (user && currentExam && score !== null) {
         </div>
     
     `
+    }
+
+    answersSection.hidden = true;
+
+    function showAnswersHandler(e) {
+        e.preventDefault();
+        answersSection.hidden = false;
+        answersSection.innerHTML = ""; // عشان ما يكررش
+
+        var answers = JSON.parse(localStorage.getItem("currentExam"));
+
+        answers.forEach((q, index) => {
+            console.log(q.correctAnswer, q.userAnswer);
+
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("mb-4", "p-4", "border", "border-base-300", "rounded-lg", "bg-base-100", "shadow");
+
+            let optionsHtml = "";
+
+            Object.entries(q.options).forEach(([key, value]) => {
+                console.log(value, key);
+
+                if (q.userAnswer !== null) {
+                    if (key === q.userAnswer && key !== q.correctAnswer) {
+                        optionsHtml += `
+                             <li class="p-2 mb-2 border-2 rounded border-error">
+                    ${key}: ${value}
+                         </li> 
+                                            `;
+                    } else if (key === q.correctAnswer && key === q.userAnswer) {
+                        optionsHtml += `
+                             <li class="p-2 mb-2 border-2 rounded border-success">
+                    ${key}: ${value}
+                         </li> 
+                                         `;
+                    } else {
+                        optionsHtml += `
+                             <li class="p-2 mb-2 border-2 rounded border-base-300">
+                    ${key}: ${value}
+                         </li> `;
+
+                    }
+                } else {
+                    if (key === q.correctAnswer) {
+                        optionsHtml += `
+                             <li class="p-2 mb-2 border-2 rounded border-black">
+                    ${key}: ${value}
+                         </li> `;
+                    } else {
+                        optionsHtml += `
+                             <li class="p-2 mb-2 border-2 rounded border-base-300">
+                    ${key}: ${value}
+                         </li> `;
+                    }
+                }
+
+            });
+
+            questionDiv.innerHTML = `
+            <h3 class="text-xl font-semibold mb-2">Question ${index + 1}</h3>
+            <h2 class="mb-3 text-2xl text-primary">${q.question}</h2>
+            <ul class="space-y-2">
+                ${optionsHtml}
+            </ul>
+        `;
+
+            answersSection.appendChild(questionDiv);
+        });
     }
 
 
@@ -299,6 +380,7 @@ logOutBtn2.addEventListener("click", () => {
         if (result.isConfirmed) {
             localStorage.removeItem("currentUser");
             localStorage.removeItem("currentExam");
+            localStorage.removeItem("score");
             location.replace("../home/index.html");
         }
     });
