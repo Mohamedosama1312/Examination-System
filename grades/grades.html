@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,39 +7,66 @@
     <title>Exam Result</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/exam.png" type="image/png">
+
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Examination System</title>
-    <!-- < src="https://cdn.tailwindcss.com"></script> -->
+
+    <link rel="stylesheet" href="../theme.css">
 </head>
 
-<body
-    class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 flex items-center justify-center p-6 relative ">
+<body class="min-h-screen bg-base-200 text-base-content transition-colors duration-500 ease-in-out">
 
-    <!-- Confetti Canvas -->
-    <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+    <!-- ======================== NAVBAR ======================== -->
+    <header class="navbar bg-base-100/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 px-4 md:px-8">
+        <div class="navbar-start">
+            <a href="../home/index.html" class="text-xl md:text-2xl font-extrabold tracking-tight select-none">
+                <span class="text-primary">Front-End</span> Fight
+            </a>
+        </div>
+
+        <div class="navbar-end gap-2">
+            <button id="logOutBtn2" class="btn bg-red-800 text-white">Logout</button>
+
+            <button id="themeToggle" class="btn btn-ghost btn-circle" aria-label="Toggle dark mode">
+                <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+                </svg>
+                <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 hidden transition-transform duration-300 text-yellow-300" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 7.66l-.71-.71M4.05 4.05l-.71-.71M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative flex items-center justify-center p-6">
+
+        <!-- Confetti Canvas -->
+        <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+
+        <div id="result-card"
+            class="max-w-5xl w-full bg-base-100 border border-base-300 rounded-3xl shadow-2xl p-10 mb-10 flex flex-col-reverse pt-18 md:pt-10 md:mb-15 md:grid md:grid-cols-2 gap-10 items-center relative z-10">
 
 
 
-    <div id="result-card"
-        class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl p-10 mb-10 flex flex-col-reverse  pt-18 md:pt-10 md:mb-15  md:grid md:grid-cols-2 gap-10 items-center relative z-10">
+        </div>
 
 
-
-    </div>
-
-
-
-
+    </main>
 
     <!-- FOOTER BAR -->
-    <div
-        class="absolute bottom-0 w-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-center py-3 text-sm">
+    <div class="w-full bg-primary text-primary-content text-center py-3 text-sm">
         🎉 Exam Completed Successfully — Keep Going!
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./grades.js"></script>
 </body>
 

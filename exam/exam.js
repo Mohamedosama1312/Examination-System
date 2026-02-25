@@ -53,9 +53,7 @@ if (user && examQuestions) {
             secondsEl.classList.add("text-red-500");
         } else if (percentage <= 50) {
             progressEl.classList.add("text-warning");
-            minutesEl.classList.add("animate-pulse");
             minutesEl.classList.add("text-yellow-500");
-            secondsEl.classList.add("animate-pulse");
             secondsEl.classList.add("text-yellow-500");
         } else {
             progressEl.classList.add("text-primary");
@@ -287,8 +285,8 @@ if (user && examQuestions) {
         for (let i = 0; i < examQuestions.length; i++) {
 
             if (examQuestions[i].flagged === true) {
-                flaggedList.innerHTML += ` <div onclick="goToQuestion(${i})"
-                            class="p-4 bg-blue-50 border-l-4 border-primary rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                flaggedList.innerHTML += `   <div onclick="goToQuestion(${i})"
+                            class="p-4 bg-blue-100 border-l-4 border-blue-500 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors">
                             <div class="flex justify-between items-center">
                                 <span class="font-semibold text-gray-800">Question ${i + 1}</span>
                                 <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -375,14 +373,100 @@ if (user && examQuestions) {
 
     //^ Submit Exam
     submitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
-        updateQuestion();
-        calculateScore();
-        localStorage.removeItem("examTimeLeft");
-        location.replace("../grades/grades.html");
+        Swal.fire({
+            title: "Are you sure?",
+            html: `Are you sure you want to submit the exam? <br>
+           <h3 class="text-lg font-semibold "><span class="text-success"> Answered </span>: ${examQuestions.filter(q => q.userAnswer).length} </h3> 
+           <h3 class="text-lg font-semibold "><span class="text-blue-500"> Flagged </span>: ${examQuestions.filter(q => q.flagged).length} </h3> 
+           <h3 class="text-lg font-semibold "><span class="text-red-600"> Remaining </span>: ${examQuestions.filter(q => !q.userAnswer).length} </h3>`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, submit it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                e.preventDefault();
+                localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+                updateQuestion();
+                calculateScore();
+                localStorage.removeItem("examTimeLeft");
+                location.replace("../grades/grades.html");
+            }
+        });
+    })
+
+
+    //^ prevent going back to exams page 
+
+
+    let examActive = true;
+
+    // نزود الصفحة في الـ history
+    history.pushState(null, null, location.href);
+
+    window.addEventListener("popstate", function () {
+
+        if (examActive) {
+
+            // نرجعه تاني لنفس الصفحة
+            history.pushState(null, null, location.href);
+
+            // نطلع تحذير
+            Swal.fire({
+                icon: "warning",
+                title: "Exam In Progress!",
+                text: "You cannot go back while the exam is running.",
+                confirmButtonText: "Continue Exam",
+                confirmButtonColor: "#3085d6",
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            });
+
+        }
 
     });
+
+
+
+
+
+    //^ DARK / LIGHT MODE TOGGLE 
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("themeToggle");
+    const moonIcon = document.getElementById("moonIcon");
+    const sunIcon = document.getElementById("sunIcon");
+
+    //^Apply theme to <html> and update toggle icons.
+
+    function applyTheme(theme) {
+        html.setAttribute("data-theme", theme);
+        if (theme === "dark") {
+            moonIcon.classList.add("hidden");
+            sunIcon.classList.remove("hidden");
+            sunIcon.classList.add("rotate-180");
+            setTimeout(() => sunIcon.classList.remove("rotate-180"), 350);
+        } else {
+            sunIcon.classList.add("hidden");
+            moonIcon.classList.remove("hidden");
+            moonIcon.classList.add("-rotate-90");
+            setTimeout(() => moonIcon.classList.remove("-rotate-90"), 350);
+        }
+    }
+
+    // Restore saved preference or default to light
+    const saved = localStorage.getItem("theme");
+    applyTheme(saved === "dark" ? "dark" : "light");
+
+    // Toggle on click
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+            const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+            applyTheme(next);
+            localStorage.setItem("theme", next);
+        });
+    }
 
 } else {
     location.replace("../exams/exams.html");

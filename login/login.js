@@ -5,6 +5,15 @@ var passError = document.getElementById("passValidateMsg");
 var loginBtn = document.getElementById("loginBtn");
 var myRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/;
 var isValid = true;
+
+
+//^ Sync theme with Home page
+(function () {
+    const saved = localStorage.getItem("theme");
+    document.documentElement.setAttribute("data-theme", saved === "dark" ? "dark" : "light");
+})();
+
+
 function loginFormValidation(e) {
     e.preventDefault();
     isValid = true;
@@ -76,7 +85,7 @@ function loginFormValidation(e) {
 
             Toast.fire({
                 icon: "success",
-                title: `Welcome back ${foundUser.fname}!`
+                title: `Welcome back ${foundUser.fname}👋`
             });
 
         } else {
@@ -95,7 +104,7 @@ function loginFormValidation(e) {
 
             Toast.fire({
                 icon: "success",
-                title: `Welcome back ${foundUser.fname}!`
+                title: `Welcome back ${foundUser.fname}👋 `
             });
 
         }
@@ -129,6 +138,12 @@ function inputPasswordValidation() {
         passError.textContent = "";
     }
 }
+
+const aSignUp = document.getElementById("aSignUp");
+aSignUp.addEventListener("click", (e) => {
+    e.preventDefault();
+    location.replace("../register/register.html");
+});
 
 inputEmail.addEventListener("change", inputEmailValidation);
 inputPass.addEventListener("change", inputPasswordValidation);  

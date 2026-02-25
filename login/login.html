@@ -5,14 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script>
-        // Keep the same theme as Home (localStorage: "theme")
-        (function () {
-            const saved = localStorage.getItem("theme");
-            document.documentElement.setAttribute("data-theme", saved === "dark" ? "dark" : "light");
-        })();
-    </script>
-
+    <link rel="icon" href="../assets/exam.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -82,7 +75,7 @@
 
                         <div class="text-center text-sm opacity-75">
                             Don’t have an account?
-                            <a href="../register/register.html" class="link link-hover text-primary">Sign Up</a>
+                            <a id="aSignUp" class="link link-hover text-primary">Sign Up</a>
                         </div>
                     </form>
                 </div>

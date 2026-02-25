@@ -280,6 +280,11 @@ function inputConfirmValidation() {
         confirmError.textContent = "";
     }
 }
+const aLogin = document.getElementById("aLogin");
+aLogin.addEventListener("click", function (e) {
+    e.preventDefault();
+    location.replace("../login/login.html");
+});
 
 
 

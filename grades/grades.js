@@ -5,7 +5,7 @@ const user = JSON.parse(localStorage.getItem("currentUser"));
 const score = JSON.parse(localStorage.getItem("score"));
 
 const currentExam = JSON.parse(localStorage.getItem("currentExam"));
-const pres = Math.round((score / currentExam.length) * 100);
+const pres = currentExam && score !== null ? Math.round((score / currentExam.length) * 100) : null;
 
 console.log(user);
 
@@ -17,45 +17,45 @@ if (user && currentExam && score !== null) {
     
         <!-- LEFT CONTENT -->
         <div>
-            <h1 class="text-4xl font-bold text-gray-800 mb-3">
-             Hi, ${user.fname}.. <br>
+            <h1 class="text-4xl font-bold text-base-content mb-3">
+             Hi, ${user.fname} ${user.lname} .. <br>
                 Congratulations 🎉
             </h1>
 
             <h2
-                class="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent mb-5">
-                You Get The <span class="text-green-500">Full Marks!</span>
+                class="text-5xl font-extrabold text-primary mb-5">
+                You Get The <span class="text-success">Full Marks!</span>
             </h2>
 
-            <p class="text-gray-600 text-lg mb-8">
+            <p class="text-base-content opacity-70 text-lg mb-8">
                 Excellent job! You successfully completed the exam with a perfect score.
             </p>
 
             <!-- SCORE CARD -->
-            <div class="bg-indigo-50 rounded-2xl p-6 mb-6 shadow">
-                <p class="text-indigo-600 font-semibold mb-2">Your Score</p>
+            <div class="bg-base-200 border border-base-300 rounded-2xl p-6 mb-6 shadow">
+                <p class="text-primary font-semibold mb-2">Your Score</p>
 
                 <div class="flex items-end gap-2">
-                    <span class="text-6xl font-bold text-gray-800">${score}</span>
-                    <span class="text-3xl text-gray-400">/${currentExam.length}</span>
+                    <span class="text-6xl font-bold text-base-content">${score}</span>
+                    <span class="text-3xl opacity-60">/${currentExam.length}</span>
                 </div>
 
-                <div class="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
-                    <div class="h-full w-full bg-gradient-to-r from-indigo-600 to-blue-500"></div>
+                <div class="mt-4 h-3 bg-base-300 rounded-full overflow-hidden">
+                    <div class="h-full w-full bg-primary"></div>
                 </div>
 
-                <p class="mt-3 text-green-600 font-medium">✔ Perfect Score</p>
+                <p class="mt-3 text-success font-medium">✔ Perfect Score</p>
             </div>
 
             <!-- BUTTONS -->
              <div class="flex flex-wrap gap-4 mt-6" >
                 <a id="home-button"  onclick="homeButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold shadow-lg hover:scale-105 transition cursor-pointer">
+                    class="btn btn-primary rounded-xl">
                     🏠 Back to Home
                 </a>
 
                 <a id="exams-button" onclick="examsButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl border-2 border-indigo-500 text-indigo-600 font-semibold hover:bg-indigo-50 transition cursor-pointer">
+                    class="btn btn-outline rounded-xl">
                     🔄 Take Another Exam
                 </a>
             </div>
@@ -107,45 +107,45 @@ if (user && currentExam && score !== null) {
     
         <!-- LEFT CONTENT -->
         <div>
-            <h1 class="text-4xl font-bold text-gray-800 mb-3">
-             Hi, ${user.fname}.. <br>
+            <h1 class="text-4xl font-bold text-base-content mb-3">
+             Hi, ${user.fname} ${user.lname}! <br>
                 Congratulations 🎉
             </h1>
 
             <h2
-                class="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent mb-5">
-                You <span class="text-green-500">Passed</span> The Exam Successfully!
+                class="text-5xl font-extrabold text-primary mb-5">
+                You <span class="text-success">Passed</span> The Exam Successfully!
             </h2>
 
-            <p class="text-gray-600 text-lg mb-8">
+            <p class="text-base-content opacity-70 text-lg mb-8">
                 Excellent job! You successfully completed the exam with a Good score.
             </p>
 
             <!-- SCORE CARD -->
-            <div class="bg-indigo-50 rounded-2xl p-6 mb-6 shadow">
-                <p class="text-indigo-600 font-semibold mb-2">Your Score</p>
+            <div class="bg-base-200 border border-base-300 rounded-2xl p-6 mb-6 shadow">
+                <p class="text-primary font-semibold mb-2">Your Score</p>
 
                 <div class="flex items-end gap-2">
-                    <span class="text-6xl font-bold text-gray-800">${score}</span>
-                    <span class="text-3xl text-gray-400">/${currentExam.length}</span>
+                    <span class="text-6xl font-bold text-base-content">${score}</span>
+                    <span class="text-3xl opacity-60">/${currentExam.length}</span>
                 </div>
 
-                <div class="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
-                    <div class="h-full rounded-full bg-gradient-to-r  from-indigo-600 to-blue-500" style="width: ${score / currentExam.length * 100}%"></div>
+                <div class="mt-4 h-3 bg-base-300 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full bg-primary" style="width: ${score / currentExam.length * 100}%"></div>
                 </div>
 
-                <p class="mt-3 text-green-600 font-medium">✔ Good Score</p>
+                <p class="mt-3 text-success font-medium">✔ Good Score</p>
             </div>
 
             <!-- BUTTONS -->
             <div class="flex flex-wrap gap-4 mt-6" >
                 <a id="home-button"  onclick="homeButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold shadow-lg hover:scale-105 transition cursor-pointer">
+                    class="btn btn-primary rounded-xl">
                     🏠 Back to Home
                 </a>
 
                 <a id="exams-button" onclick="examsButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl border-2 border-indigo-500 text-indigo-600 font-semibold hover:bg-indigo-50 transition cursor-pointer">
+                    class="btn btn-outline rounded-xl">
                     🔄 Take Another Exam
                 </a>
             </div>
@@ -197,45 +197,45 @@ if (user && currentExam && score !== null) {
     
         <!-- LEFT CONTENT -->
         <div>
-            <h1 class="text-4xl font-bold text-gray-800 mb-3">
-             Hi, ${user.fname}.. <br>
+            <h1 class="text-4xl font-bold text-base-content mb-3">
+             ${user.fname} ${user.lname}.. <br>
              Sorry 😔
             </h1>
 
             <h2
-                class="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent mb-5">
-                You <span class="text-red-500">Failed</span> The Exam!
+                class="text-5xl font-extrabold text-primary mb-5">
+                You <span class="text-error">Failed</span> The Exam!
             </h2>
 
-            <p class="text-gray-600 text-lg mb-8">
+            <p class="text-base-content opacity-70 text-lg mb-8">
                 You did not meet the passing threshold. Keep practicing and try again!
             </p>
 
             <!-- SCORE CARD -->
-            <div class="bg-indigo-50 rounded-2xl p-6 mb-6 shadow">
-                <p class="text-indigo-600 font-semibold mb-2">Your Score</p>
+            <div class="bg-base-200 border border-base-300 rounded-2xl p-6 mb-6 shadow">
+                <p class="text-primary font-semibold mb-2">Your Score</p>
 
                 <div class="flex items-end gap-2">
-                    <span class="text-6xl font-bold text-gray-800">${score}</span>
-                    <span class="text-3xl text-gray-400">/${currentExam.length}</span>
+                    <span class="text-6xl font-bold text-base-content">${score}</span>
+                    <span class="text-3xl opacity-60">/${currentExam.length}</span>
                 </div>
 
-                <div class="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
-                    <div class="h-full rounded-full bg-gradient-to-r  from-indigo-600 to-blue-500" style="width: ${score / currentExam.length * 100}%"></div>
+                <div class="mt-4 h-3 bg-base-300 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full bg-primary" style="width: ${score / currentExam.length * 100}%"></div>
                 </div>
 
-                <p class="mt-3 text-red-600 font-medium">❌ Failed Score</p>
+                <p class="mt-3 text-error font-medium">❌ Failed Score</p>
             </div>
 
             <!-- BUTTONS -->
              <div class="flex flex-wrap gap-4 mt-6" >
                 <a id="home-button"  onclick="homeButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold shadow-lg hover:scale-105 transition cursor-pointer">
+                    class="btn btn-primary rounded-xl">
                     🏠 Back to Home
                 </a>
 
                 <a id="exams-button" onclick="examsButtonHandler(event)"
-                    class="px-6 py-3 rounded-xl border-2 border-indigo-500 text-indigo-600 font-semibold hover:bg-indigo-50 transition cursor-pointer">
+                    class="btn btn-outline rounded-xl">
                     🔄 Take Another Exam
                 </a>
             </div>
@@ -283,8 +283,63 @@ else {
 }
 
 
+//^ log out btn logic
+const logOutBtn2 = document.getElementById("logOutBtn2");
 
+logOutBtn2.addEventListener("click", () => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Are you sure you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log out!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("currentExam");
+            location.replace("../home/index.html");
+        }
+    });
+})
 
+//^ DARK / LIGHT MODE TOGGLE 
+
+const html = document.documentElement;
+const toggleBtn = document.getElementById("themeToggle");
+const moonIcon = document.getElementById("moonIcon");
+const sunIcon = document.getElementById("sunIcon");
+
+//^Apply theme to <html> and update toggle icons.
+
+function applyTheme(theme) {
+    html.setAttribute("data-theme", theme);
+    if (theme === "dark") {
+        moonIcon.classList.add("hidden");
+        sunIcon.classList.remove("hidden");
+        sunIcon.classList.add("rotate-180");
+        setTimeout(() => sunIcon.classList.remove("rotate-180"), 350);
+    } else {
+        sunIcon.classList.add("hidden");
+        moonIcon.classList.remove("hidden");
+        moonIcon.classList.add("-rotate-90");
+        setTimeout(() => moonIcon.classList.remove("-rotate-90"), 350);
+    }
+}
+
+// Restore saved preference or default to light
+const saved = localStorage.getItem("theme");
+applyTheme(saved === "dark" ? "dark" : "light");
+
+// Toggle on click
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+    });
+}
 
 
 
