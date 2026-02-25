@@ -145,5 +145,5 @@ aSignUp.addEventListener("click", (e) => {
     location.replace("../register/register.html");
 });
 
-inputEmail.addEventListener("change", inputEmailValidation);
-inputPass.addEventListener("change", inputPasswordValidation);  
+inputEmail.addEventListener("input", inputEmailValidation);
+inputPass.addEventListener("input", inputPasswordValidation);  

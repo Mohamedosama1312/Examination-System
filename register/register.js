@@ -288,11 +288,11 @@ aLogin.addEventListener("click", function (e) {
 
 
 
-inputFname.addEventListener("change", inputFnameValidation);
-inputLname.addEventListener("change", inputLnameValidation);
-inputEmail.addEventListener("change", inputEmailValidation);
-inputPass.addEventListener("change", inputPasswordValidation);
-inputConfirm.addEventListener("change", inputConfirmValidation);
+inputFname.addEventListener("input", inputFnameValidation);
+inputLname.addEventListener("input", inputLnameValidation);
+inputEmail.addEventListener("input", inputEmailValidation);
+inputPass.addEventListener("input", inputPasswordValidation);
+inputConfirm.addEventListener("input", inputConfirmValidation);
 
 
 
